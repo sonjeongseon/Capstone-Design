@@ -11,12 +11,15 @@
 #include <CAMERA/camera.h>
 #include <MODEL/model.h>
 
+#include <fstream>
 #include <iostream>
+
 
 void framebuffer_size_callback(GLFWwindow* window, int width, int height);
 void mouse_callback(GLFWwindow* window, double xpos, double ypos);
 void scroll_callback(GLFWwindow* window, double xoffset, double yoffset);
 void processInput(GLFWwindow* window);
+
 
 unsigned int loadTexture(const char* path);
 unsigned int loadCubemap(vector<std::string> faces);
@@ -88,7 +91,7 @@ int main()
 
     // vertice Á¤ÀÇ
 
-    float roomVertices[] = {   
+    float roomVertices[] = {
         // Back face
         -0.5f, -0.5f, -0.5f,  0.0f, 0.0f, // Bottom-left
          0.5f,  0.5f, -0.5f,  1.0f, 1.0f, // top-right
@@ -285,24 +288,6 @@ int main()
         airShader.setMat4("projection", projection);
         airModel.Draw(airShader);
 
-        /*light shader
-        lightingShader.use();
-        lightingShader.setVec3("objectColor", 1.0f, 0.5f, 0.31f);
-        lightingShader.setVec3("lightColor", 1.0f, 1.0f, 1.0f);
-        lightingShader.setVec3("lightPos", lightPos);
-        lightingShader.setMat4("projection", projection);
-        lightingShader.setMat4("view", view);
-        lightingShader.setMat4("model", model);
-
-        //light cube object
-        lightCubeShader.use();
-        lightCubeShader.setMat4("projection", projection);
-        lightCubeShader.setMat4("view", view);
-        model = glm::mat4(1.0f);
-        model = glm::translate(model, lightPos);
-        model = glm::scale(model, glm::vec3(0.2f)); // a smaller cube
-        lightCubeShader.setMat4("model", model);*/
-
         // draw box as last
         glDepthFunc(GL_LEQUAL);
         boxShader.use();
@@ -350,11 +335,14 @@ void processInput(GLFWwindow* window)
     if (glfwGetKey(window, GLFW_KEY_D) == GLFW_PRESS)
         camera.ProcessKeyboard(RIGHT, deltaTime);
 
-    if (glfwGetKey(window, GLFW_KEY_Z) == GLFW_PRESS)
-        system("C:\\Users\\wjd24\\Desktop\\UI\\airconditioner\\airconditioner\\bin\\Debug\\airconditioner.exe");
+    //if (glfwGetKey(window, GLFW_KEY_Z) == GLFW_PRESS)
+        //system("C:\\Users\\wjd24\\Desktop\\UI\\airconditioner\\airconditioner\\bin\\Debug\\airconditioner.exe");
 
     if (glfwGetKey(window, GLFW_KEY_X) == GLFW_PRESS)
-        system("C:\\Users\\wjd24\\Desktop\\UI\\co2sensor\\co2graph\\x64\\Debug\\co2graph.exe");
+        //system("C:\\Users\\wjd24\\Desktop\\UI\\co2sensor\\co2graph\\x64\\Debug\\co2graph.exe");
+        //system("close");
+        system("cmd /c C:\\Users\\wjd24\\Desktop\\UI\\co2sensor\\co2graph\\x64\\Debug\\co2graph.exe&&C:\\Users\\wjd24\\Desktop\\UI\\airconditioner\\airconditioner\\bin\\Debug\\airconditioner.exe");
+
 }
 
 
